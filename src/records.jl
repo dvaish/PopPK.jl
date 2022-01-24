@@ -53,7 +53,7 @@ function population(run::Run; index = 1)
 end
 
 #= INIT =#
-function init(dir::AbstractString; runs = "runs/", models = "models/")
+function init(;dir::AbstractString = pwd(), runs = "runs/", models = "models/")
     # if !isdir(dir)
     #     dir = joinpath(pwd(), dir)
     # end
@@ -71,10 +71,6 @@ function init(dir::AbstractString; runs = "runs/", models = "models/")
     return records
 end
 
-function init()
-    return init(pwd())
-end
-
 function current()
     return CURRENT_RECORDS
 end
@@ -85,12 +81,8 @@ function records!(records::Records)
 end
 
 #= REINIT =#
-function reinit!(wd)
-    records = deserialize(wd)
+function reinit!(;dir = wd)
+    records = deserialize(dir)
     global CURRENT_RECORDS = records
     return records
-end
-
-function reinit!()
-    return reinit!(pwd())
 end

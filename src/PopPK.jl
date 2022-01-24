@@ -6,7 +6,6 @@ using Serialization
 using Random
 using Pumas
 
-include("plots.jl")
 include("pre.jl")
 include("post.jl")
 include("readers.jl")
